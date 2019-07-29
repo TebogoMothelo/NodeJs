@@ -20,11 +20,9 @@ class visitor{
         visitorsArray.push(o)
         return visitorsArray
     }
- 
-   
 }
 
-function save(i){
+function save(){
     let visitorsArray2 = visitorsArray
     let fs = require('fs');
     for(let i = 0; i<visitorsArray2.length; i++){
@@ -33,10 +31,12 @@ function save(i){
             if(err) throw err;
             console.log('worked');
         })
-        visitorFiles.push("visitor_" + [i+1] + ".JSON")
+        visitorFiles.push("visitor_"+ [i+1] + ".JSON")
     }    
 }
 
-function load(x,id){
-    return visitorFiles[id-1]
-}
+function load(id){
+    return require("./visitor_"+id+".json")
+   }
+
+

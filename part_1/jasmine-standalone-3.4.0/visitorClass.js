@@ -1,6 +1,5 @@
 
 let visitorsArray = [];
-let visitorFiles = [];
 class visitor{
     constructor( fullName,age,date,time,comments,assistorName){
         this.fullName = fullName;
@@ -20,23 +19,25 @@ class visitor{
         visitorsArray.push(o)
         return visitorsArray
     }
+
 }
 
 function save(){
     let visitorsArray2 = visitorsArray
     let fs = require('fs');
     for(let i = 0; i<visitorsArray2.length; i++){
+        //add if statement 
         let visitorFile = JSON.stringify(visitorsArray2[i])
         fs.writeFile( "visitor_" + [i+1] + ".JSON", visitorFile, function(err){
             if(err) throw err;
             console.log('worked');
         })
-        visitorFiles.push("visitor_"+ [i+1] + ".JSON")
     }    
 }
 
 function load(id){
     return require("./visitor_"+id+".json")
    }
+
 
 

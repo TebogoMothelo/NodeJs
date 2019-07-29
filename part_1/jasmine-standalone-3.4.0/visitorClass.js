@@ -1,32 +1,38 @@
+
+let visitorsArray = []
 class visitor{
-    constructor(){
+    constructor( fullName,age,date,time,comments,assistorName){
+        this.fullName = fullName;
+        this.age = age;
+        this.date = date;
+        this.time = time;
+        this.comments = comments;
+        this.assistorName = assistorName;
+        // visitorsArray.push(this)
+        // return visitorsArray
+        let o =  {
+            fullName,
+            age,
+            date,
+            time,
+            comments,
+            assistorName,
+        }  
+        visitorsArray.push(o)
+        return visitorsArray
     }
-    
-    visitorDetails(fullName,age,date,time,comments, assistorName,){
-       return {
-           fullName,
-           age,
-           date,
-           time,
-           comments,
-           assistorName,
-       }   
+ 
+   
+}
 
-    }
-
-    visitorCount() {
-        let count = 0;
-            ++count
-        return count;
-    }
-
-    save(visitorDetails,visitorCount){
-        let y = visitorDetails;
-        let u = visitorCount
-        console.log(y)
-        let fs = require('fs');
-        let visitorFile = JSON.stringify(y)
-        fs.writeFile( "visitor_" + u + ".JSON", visitorFile, function(err){
+function save(){
+    let visitorsArray2 = visitorsArray
+    console.log(visitorsArray2)
+    let fs = require('fs');
+    for(let i = 0; i<visitorsArray2.length; i++){
+        console.log(visitorsArray2[i])
+        let visitorFile = JSON.stringify(visitorsArray2[i])
+        fs.writeFile( "visitor_" + [i+1] + ".JSON", visitorFile, function(err){
             if(err) throw err;
             console.log('worked')
 
@@ -34,5 +40,10 @@ class visitor{
     }
 }
 
+function load(){
+    
+}
+let n = new visitor("Palesa Sithebe",22, "25 July 2019","13:00", "Umuzi seems awesome", "Singita Ngobeni")
 
-
+let p = new visitor("Palesa",22, "25 July 2019","13:00", "Umuzi seems awesome", "Singita Ngobeni")
+console.log(save())

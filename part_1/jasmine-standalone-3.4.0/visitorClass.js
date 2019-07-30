@@ -1,5 +1,4 @@
 
-let visitorsArray = [];
 class visitor{
     constructor( fullName,age,date,time,comments,assistorName){
         this.fullName = fullName;
@@ -9,27 +8,43 @@ class visitor{
         this.comments = comments;
         this.assistorName = assistorName;
     }
+
+    createId(){
+        let id = 1;
+        let regex = /[0-9]/
+        let largest = 0;
+        let fs = require('fs')
+        let path = require('path')
+        let files = fs.readdirSync('.')
+         for(var i in files) {
+             if(path.extname(files[i]) === ".JSON") {
+                 let t  = regex.exec(files[i])
+                     console.log(t[0])
+                     if(t[0] > largest){
+                         largest = t[0]
+                         console.log(largest)
+                         id = parseInt(largest) + 1
+                         console.log(id)
+                     }
+                 }
+             }
+             return id;   
+     }
     
-    save(){
-        visitorsArray.push(this)
-        let visitorsArray2 = visitorsArray
+    save(id){
         let fs = require('fs');
-        for(let i = 0; i<visitorsArray2.length; i++){
-            //add if statement 
-            let visitorFile = JSON.stringify(visitorsArray2[i])
-            fs.writeFile( `visitor_${i+1}.JSON`, visitorFile, function(err){
+            let visitorFile = JSON.stringify(this)
+            fs.writeFile( `visitor_${id}.JSON`, visitorFile, function(err){
                 if(err) throw err;
                 console.log('worked');
-            })
-        }    
+            })  
     }
+
     load(id){
         return require(`./visitor_${id}.json`)
        }
 
-}
-
-
+    }
 
 
 

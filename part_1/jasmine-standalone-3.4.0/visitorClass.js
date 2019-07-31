@@ -1,4 +1,4 @@
-
+let id = 1;
 class visitor{
     constructor( fullName,age,date,time,comments,assistorName){
         this.fullName = fullName;
@@ -10,7 +10,7 @@ class visitor{
     }
 
     createId(){
-        let id = 1;
+        // let id = 1;
         let regex = /[0-9]/
         let largest = 0;
         let fs = require('fs')
@@ -19,19 +19,16 @@ class visitor{
          for(var i in files) {
              if(path.extname(files[i]) === ".JSON") {
                  let t  = regex.exec(files[i])
-                     console.log(t[0])
                      if(t[0] > largest){
                          largest = t[0]
-                         console.log(largest)
                          id = parseInt(largest) + 1
-                         console.log(id)
                      }
                  }
              }
              return id;   
      }
     
-    save(id){
+    save(){
         let fs = require('fs');
             let visitorFile = JSON.stringify(this)
             fs.writeFile( `visitor_${id}.JSON`, visitorFile, function(err){

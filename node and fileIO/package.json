@@ -1,0 +1,14 @@
+{
+  "name": "part_1",
+  "version": "1.0.0",
+  "description": "This folder contains Nodejs challenges The first challenge, located in part_1 contains a class which creates a visitor The functions allow a visitor id to be created,which is achieved by a createId function The save function writes the new visitor to a .JSON file. The load function displays a visitors information when passed an id number.",
+  "main": "visitorClass.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^3.4.0"
+  }
+}

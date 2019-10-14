@@ -1,0 +1,25 @@
+form{
+    margin-top : 12%;
+    margin-left: 40%;
+}
+
+input{
+    height: 40px;
+    width: 250px;
+    margin-left: 5px; 
+    margin-top: 155px;
+}
+
+button{
+    height: 45px;
+    width: 100px;
+    font-size: 20px;
+}
+
+#edit,#delete {
+    margin-top: 35px !important;
+}
+
+h1{
+    text-align: center;
+}

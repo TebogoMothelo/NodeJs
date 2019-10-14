@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <!-- <link rel="stylesheet" href="app.css" type="text/css"> -->
+    <style>
+    
+    body{
+        background-color: rgb(34, 33, 33)
+    }
+    h1{
+        background-color: rgb(255, 115, 0);
+    }
+
+    form{
+        margin-top: 20px;
+    }
+
+    input{
+        height: 30px;
+        width: 300px;
+        margin-left: 4px;
+        border-style: solid
+    }
+    button {
+        height: 37px;
+        width: 75px;
+        background-color: rgb(255, 115, 0);
+    }
+
+    li{
+        color: white;
+    }
+
+    </style>
+</head>
+
+<body>
+    <h1>My PlayList</h1>
+    <form action='/add/:musician' method="POST">
+        <label for="name"></label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Add</button>
+    </form>
+    <form id="edit" action='/:id/update' method="POST">
+        <input type="text" name="newName" placeholder="enter a new name">
+        <input type="text" name="delete" placeholder="enter id of the musician to edit">
+        <button type="submit">Edit</button>
+    </form>
+    <form id="delete" action='/:id' method="POST">
+        <input  type="text" name="id" placeholder="enter id of the musician to delete">
+        <button type="submit">Delete</button>
+    </form>
+    <form action="" method="POST">
+        <button>Sort</button>
+    </form>
+    <div>
+        <ul id="ls"></ul>
+    </div>
+    <script>
+    async function displaying(){
+        let data = await fetch("http://localhost:3090/get",{method:'GET'})
+        let list = await data.json()
+        const listing = document.getElementById("ls")
+        list.forEach(element => {
+            const li = document.createElement("LI");
+            li.textContent = `name: ${element.name}  id: ${element._id}`
+            listing.appendChild(li)
+        });
+    }
+    displaying()
+
+ </script>
+ <script src="server.js"></script>
+</body>
+
+</html>

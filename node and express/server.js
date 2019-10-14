@@ -22,7 +22,6 @@ var con = MongoClient.connect(url, {
     console.log("Database created");
     db.close();
 });
-
 //connect to mongodb
 MongoClient.connect(url, {
     useNewUrlParser: true
@@ -35,7 +34,6 @@ MongoClient.connect(url, {
         db.close()
     });
 })
-
 //add new musician
 app.post('/add/:musician', (req, res, next) => {
         MongoClient.connect(url, {
@@ -50,7 +48,6 @@ app.post('/add/:musician', (req, res, next) => {
         res.redirect('/')
     });
 });
-
 //get data onto page
 app.get('/get', (req, res) => {
     var result = [];
@@ -68,7 +65,6 @@ app.get('/get', (req, res) => {
         })
     })
 });
-
 //delete
 app.post('/:id', (req,res) => {
     var id = req.body;
@@ -83,7 +79,6 @@ app.post('/:id', (req,res) => {
         });
     });
 })
-
 //update
 app.post('/:id/update',(req, res) => {
     var objectId = require("mongodb").ObjectId
@@ -101,6 +96,8 @@ app.post('/:id/update',(req, res) => {
 
 })
    
+//sort alphabetically
+
      
 
 

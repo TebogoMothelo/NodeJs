@@ -12,12 +12,18 @@
     body{
         background-color: rgb(34, 33, 33)
     }
+    form {
+        margin-left: 42%;
+        margin-top: 20px;
+    }
+
     h1{
         background-color: rgb(255, 115, 0);
     }
 
-    form{
-        margin-top: 20px;
+    ul{
+        margin-top: -200px;
+        
     }
 
     input{
@@ -32,8 +38,17 @@
         background-color: rgb(255, 115, 0);
     }
 
-    li{
+    ul,li{
         color: white;
+    }
+    ul{
+        font-size: 35px;
+    }
+    li{
+        font-size: 18px !important;
+    }
+    #sort{
+        margin-top: 50px;
     }
 
     </style>
@@ -56,10 +71,10 @@
         <button type="submit">Delete</button>
     </form>
     <form action="" method="POST">
-        <button>Sort</button>
+        <button id="sort">Sort List</button>
     </form>
     <div>
-        <ul id="ls"></ul>
+        <ul id="ls">Artists</ul>
     </div>
     <script>
     async function displaying(){

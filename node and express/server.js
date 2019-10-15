@@ -56,7 +56,7 @@ app.get('/get', (req, res) => {
     }, (err, db) => {
         if (err) throw error;
         var dbo = db.db("MusicPlayer");
-        var cursor = dbo.collection("Musician").find({});
+        var cursor = dbo.collection("Musician").find({}).sort({name : 1});;
         cursor.forEach((doc, err) => {
             result.push(doc)
         }, () => {

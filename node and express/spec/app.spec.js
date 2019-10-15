@@ -1,43 +1,68 @@
-// var Request = require("request");
+var Request = require("request");
 
-// describe("Server", () => {
-//     var server;
-//     beforeAll(() => {
-//         server = require("../app");
-//     });
-//     afterAll(() => {
-//         server.close();
-//     });
-//     describe("GET /", () => {
-//         var data = {};
-//         beforeAll((done) => {
-//             Request.get("http://localhost:3000/", (error, response, body) => {
-//                 data.status = response.statusCode;
-//                 data.body = body;
-//                 done();
-//             });
-//         });
-//         it("Status 200", () => {
-//             expect(data.status).toBe(200);
-//         });
-//         it("Body", () => {
-//             expect(data.body).toBe("The Polyglot Developer");
-//         });
-//     });
-//     describe("GET /test", () => {
-//         var data = {};
-//         beforeAll((done) => {
-//             Request.get("http://localhost:3000/test", (error, response, body) => {
-//                 data.status = response.statusCode;
-//                 data.body = JSON.parse(body);
-//                 done();
-//             });
-//         });
-//         it("Status 200", () => {
-//             expect(data.status).toBe(500);
-//         });
-//         it("Body", () => {
-//             expect(data.body.message).toBe("This is an error response");
-//         });
-//     });
-// });
+var base_url = "http://localhost:3090/";
+
+
+describe("Server", () => {
+    var server;
+    beforeAll(() => {
+        server = require("../server");
+    });
+});
+describe("POST /", () => {
+
+    it("responds successfully", (done) => {
+        Request.get("http://localhost:3090/", (error, response, body) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+
+    it("the body of the request is a string", (done) => {
+        Request.get("http://localhost:3090//add/:musician", (error, response, body) => {
+            expect(body).toEqual(jasmine.any(String));
+            done();
+        });
+    });
+    it("the body of the response is an object", (done) => {
+        Request.get("http://localhost:3090//add/:musician", (error, response, body) => {
+            expect(response).toEqual(jasmine.any(Object));
+            done();
+        });
+    });
+})
+describe("GET /", () => {
+
+    it("responds successfully", (done) => {
+        Request.get("http://localhost:3090/", (error, response, body) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+
+    it("the body of the request is a string", (done) => {
+        Request.get("http://localhost:3090/get", (error, response, body) => {
+            expect(body).toEqual(jasmine.any(String));
+            done();
+        });
+    });
+
+})
+
+describe("/:id", () => {
+
+    it("responds successfully", (done) => {
+        Request.get("http://localhost:3090/", (error, response, body) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+
+    it("the body of the request is a string", (done) => {
+        Request.get("http://localhost:3090//:id", (error, response, body) => {
+            expect(body).toEqual(jasmine.any(String));
+            done();
+        });
+    });
+
+})

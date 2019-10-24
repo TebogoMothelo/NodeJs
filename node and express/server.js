@@ -56,9 +56,10 @@ app.get('/get', (req, res) => {
     }, (err, db) => {
         if (err) throw error;
         var dbo = db.db("MusicPlayer");
-        var cursor = dbo.collection("Musician").find({}).sort({name : 1});;
+        var cursor = dbo.collection("Musician").find({}).sort({name: 1})
         cursor.forEach((doc, err) => {
-            result.push(doc)
+            result.push(doc);
+            result.sort(( a,b) => a-b);
         }, () => {
             db.close();
             res.send(result)
@@ -68,7 +69,6 @@ app.get('/get', (req, res) => {
 //delete
 app.post('/:id', (req, res) => {
     var id = req.body;
-    console.log(id)
     var objectId = require("mongodb").ObjectID
     MongoClient.connect(url, {
         useNewUrlParser: true
@@ -78,7 +78,6 @@ app.post('/:id', (req, res) => {
         dbo.collection("Musician").deleteOne({
             "_id": objectId(id.id)
         }, (err, result) => {
-            console.log(id.id)
             if (err) throw err;
             db.close();
             res.redirect('/')
@@ -107,9 +106,19 @@ app.post('/:id/update', (req, res) => {
             app.redirect('/')
         });
     });
-
 })
 
+app.get('/?sort=name', (req,res) => {
+    var name = query.params.name;
+    console.log(name)
+    MongoClient.connect(url, {
+        useNewUrlParser: true
+    }, (err, db) => {
+        if (err) throw error;
+        var dbo = db.db("MusicPlayer");
+        var sorted = dbo.collection("Musician").find({}).sort({name : 1})
+})
+})
 exports.closeServer = function () {
     server.close();
 };

@@ -67,7 +67,7 @@
         <input  type="text" name="id" placeholder="enter id of the musician to delete">
         <button type="submit">Delete</button>
     </form>
-    <form action="" method="POST">
+    <form action="/?sort=name" method="GET">
         <button id="sort">Sort List</button>
     </form>
     <div>
@@ -77,7 +77,7 @@
     async function displaying(){
         let data = await fetch("http://localhost:3090/get",{method:'GET'})
         let list = await data.json()
-        const listing = document.getElementById("ls")
+        const listing = document.getElementById("ls");
         list.forEach(element => {
             const li = document.createElement("LI");
             li.textContent = `name: ${element.name}  id: ${element._id}`

@@ -116,8 +116,10 @@ app.get('/?sort=name', (req,res) => {
     }, (err, db) => {
         if (err) throw error;
         var dbo = db.db("MusicPlayer");
-        var sorted = dbo.collection("Musician").find({}).sort({name : 1})
-})
+        var sorted = dbo.collection("Musician").find({}).sort({name : 1}).exec((err, docs) =>{
+            if(err) {console.log(err)}
+        })
+    })   
 })
 exports.closeServer = function () {
     server.close();

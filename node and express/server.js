@@ -108,23 +108,6 @@ app.post('/:id/update', (req, res) => {
     });
 })
 
-// //sort
-// app.get('/sort', (req,res) => {
-//     var name = req.name;
-//     console.log(name)
-//     MongoClient.connect(url, {
-//         useNewUrlParser: true
-//     }, (err, db) => {
-//         if (err) throw error;
-//         var dbo = db.db("MusicPlayer");
-//         dbo.collection("Musician").find({}).sort({name : 1}).toArray((err, docs) =>{
-//             if(err) {console.log(err)}
-//             db.close();
-//             // app.redirect('/')
-//         })
-//     })   
-// })
-
 exports.closeServer = function () {
     server.close();
 };

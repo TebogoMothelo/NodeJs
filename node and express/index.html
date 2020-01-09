@@ -18,23 +18,31 @@
     }
     form {
         margin-left: 52%;
-        margin-top: 20px;
+        margin-top: 40px;
     }
 
     h1{
         background-color: rgb(255, 115, 0);
+        text-align: center;
+        font-size: 45px;
+    }
+    h2{
+        margin-left: 50px;
+        font-size: 30px;
+    }
+
+    #editList{
+        margin-left: 60%;
     }
 
     ul{
-        margin-top: -200px;
-        
+        margin-top: -200px;    
     }
 
     input{
         height: 30px;
         width: 300px;
         margin-left: 4px;
-
     }
     button {
         height: 37px;
@@ -43,6 +51,7 @@
     }
 
     ul,li{
+        list-style-type: none;
         color: rgb(32, 31, 31);
         font-family:monospace;
         
@@ -59,6 +68,9 @@
 
 <body>
     <h1>My PlayList</h1>
+    
+    <h2 id="editList">Edit</h2>
+    <h2>Artists</h2>
     <form action='/add/:musician' method="POST">
         <label for="name"></label>
         <input type="text" id="name" name="name">
@@ -69,13 +81,15 @@
         <input type="text" name="delete" placeholder="enter id of the musician to edit">
         <button type="submit">Edit</button>
     </form>
-    <form id="delete" action='/:id' method="POST">
-        <input  type="text" name="id" placeholder="enter id of the musician to delete">
+    <form id="delete" action='/:name' method="POST">
+        <input  type="text" name="name" placeholder="enter name of the musician to delete">
         <button type="submit">Delete</button>
     </form>
-    <form action="/?sort=name" method="GET">
-        <button id="sort">Sort List</button>
-    </form>
+    <!-- <form action="/sort" method="GET">
+        <button id="sort" name="sort">Sort List</button>
+    </form> -->
+    <div></div>
+ 
     <div>
         <ul id="ls"></ul>
     </div>
@@ -86,13 +100,11 @@
         const listing = document.getElementById("ls");
         list.forEach(element => {
             const li = document.createElement("LI");
-            li.textContent = `Name: ${element.name}  ID: ${element._id}` 
+            li.textContent = `Name: ${element.name}` 
             listing.appendChild(li)
         });
     }
     displaying()
-
  </script>
 </body>
-
 </html>

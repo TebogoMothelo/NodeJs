@@ -66,24 +66,24 @@ app.get('/get', (req, res) => {
         })
     })
 });
+
 //delete
-app.post('/:id', (req, res) => {
-    var id = req.body;
-    var objectId = require("mongodb").ObjectID
+app.post('/:name', (req, res) => {
     MongoClient.connect(url, {
         useNewUrlParser: true
     }, (err, db) => {
         if (err) throw err;
         var dbo = db.db("MusicPlayer");
-        dbo.collection("Musician").deleteOne({
-            "_id": objectId(id.id)
-        }, (err, result) => {
-            if (err) throw err;
-            db.close();
-            res.redirect('/')
+        var myquery = { name: req.body.name} ;
+        dbo.collection("Musician").deleteOne(myquery, function(err, obj) {
+          if (err) throw err;
+          console.log("1 document deleted");
+          db.close();
+          res.redirect('/')
         });
-    });
-})
+      });
+    })
+    
 //update
 app.post('/:id/update', (req, res) => {
     var objectId = require("mongodb").ObjectId
@@ -108,19 +108,23 @@ app.post('/:id/update', (req, res) => {
     });
 })
 
-app.get('/?sort=name', (req,res) => {
-    var name = query.params.name;
-    console.log(name)
-    MongoClient.connect(url, {
-        useNewUrlParser: true
-    }, (err, db) => {
-        if (err) throw error;
-        var dbo = db.db("MusicPlayer");
-        var sorted = dbo.collection("Musician").find({}).sort({name : 1}).exec((err, docs) =>{
-            if(err) {console.log(err)}
-        })
-    })   
-})
+// //sort
+// app.get('/sort', (req,res) => {
+//     var name = req.name;
+//     console.log(name)
+//     MongoClient.connect(url, {
+//         useNewUrlParser: true
+//     }, (err, db) => {
+//         if (err) throw error;
+//         var dbo = db.db("MusicPlayer");
+//         dbo.collection("Musician").find({}).sort({name : 1}).toArray((err, docs) =>{
+//             if(err) {console.log(err)}
+//             db.close();
+//             // app.redirect('/')
+//         })
+//     })   
+// })
+
 exports.closeServer = function () {
     server.close();
 };

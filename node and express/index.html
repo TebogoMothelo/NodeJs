@@ -6,58 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
-    <!-- <link rel="stylesheet" href="app.css" type="text/css"> -->
     <style>
     
     body{
-        background-color: rgb(57, 200, 165);
-        background-image: url('headphones.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
+        background-color: rgb(33, 34, 34);
+       
     }
     form {
-        margin-left: 52%;
+        margin-left: 42%;
         margin-top: 40px;
     }
 
     h1{
-        background-color: rgb(255, 115, 0);
+        background-color: rgb(79, 224, 250);
         text-align: center;
         font-size: 45px;
     }
     h2{
         margin-left: 50px;
-        font-size: 30px;
+        font-size: 35px;
+        margin-top: -300px;
+        color:rgb(79, 224, 250) ;
     }
 
     #editList{
-        margin-left: 60%;
+        margin-left: 10%;
+        margin-top: 50px;
     }
 
     ul{
-        margin-top: -200px;    
+        margin-top: -400px;    
     }
 
     input{
-        height: 30px;
+        height: 40px;
         width: 300px;
         margin-left: 4px;
     }
     button {
-        height: 37px;
+        height: 45px;
         width: 75px;
-        background-color: rgb(255, 115, 0);
+        background-color: rgb(79, 224, 250);
     }
 
     ul,li{
         list-style-type: none;
         color: rgb(32, 31, 31);
         font-family:monospace;
+        color:rgb(79, 224, 250) ;
         
     }
     li{
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
     #sort{
         margin-top: 50px;
@@ -68,10 +68,9 @@
 
 <body>
     <h1>My PlayList</h1>
-    
-    <h2 id="editList">Edit</h2>
-    <h2>Artists</h2>
-    <form action='/add/:musician' method="POST">
+
+    <form action='/add/:musician' method="POST"> 
+        <h2 id="editList">Edit</h2>
         <label for="name"></label>
         <input type="text" id="name" name="name">
         <button type="submit">Add</button>
@@ -88,9 +87,9 @@
     <!-- <form action="/sort" method="GET">
         <button id="sort" name="sort">Sort List</button>
     </form> -->
-    <div></div>
- 
     <div>
+        <h2>Artists</h2>
+        <div style="height:370px;"></div>
         <ul id="ls"></ul>
     </div>
     <script>

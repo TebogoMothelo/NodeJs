@@ -86,7 +86,7 @@ app.post('/:name', (req, res) => {
     
 //update
 app.post('/:id/update', (req, res) => {
-    var objectId = require("mongodb").ObjectId
+    // var objectId = require("mongodb").ObjectId
     MongoClient.connect(url, {
         useNewUrlParser: true
     }, (err, db) => {
@@ -97,16 +97,25 @@ app.post('/:id/update', (req, res) => {
                 name: req.body.newName
             }
         }
-        var id = req.body
-        dbo.collection("Musician").updateOne({
-            "_id": objectId(id.delete)
-        }, newData, (err, result) => {
+        var myquery = {name: req.body.delete};
+        dbo.collection("Musician").updateOne(myquery, newData, (err, result) => {
             if (err) throw err;
             db.close();
-            app.redirect('/')
+            res.redirect('/')
         });
     });
 })
+
+
+
+
+
+
+
+
+
+
+
 
 exports.closeServer = function () {
     server.close();
